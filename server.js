@@ -2,23 +2,28 @@ const express = require('express');
 const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
 const path = require('path');
+const cors = require('cors'); // Add this line
 require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Configure CORS options
+const corsOptions = {
+    origin: 'http://www.rshreeprints.com', // Replace with your custom domain
+    optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions)); // Add this line
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
-// Serve static files from the root directory
 app.use(express.static(__dirname));
 
-// Route to serve the index.html file
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-// Contact form endpoint
 app.post('/contact', (req, res) => {
     const { name, email, phone, message } = req.body;
 
