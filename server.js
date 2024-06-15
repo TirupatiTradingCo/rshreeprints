@@ -10,15 +10,20 @@ const PORT = process.env.PORT || 3000;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+// Serve static files from the root directory
 app.use(express.static(__dirname));
 
+// Serve index.html at the root path
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.post('/contact', (req, res) => {
     const { name, email, phone, message } = req.body;
-    console.log(req.body); 
+
+    if (!name || !email || !phone || !message) {
+        return res.status(400).send('All fields are required.');
+    }
 
     const transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -37,11 +42,9 @@ app.post('/contact', (req, res) => {
 
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
-            console.log('Error:', error);
-            res.status(500).send('Something went wrong.');
+            return res.status(500).send('Something went wrong.');
         } else {
-            console.log('Email sent:', info.response);
-            res.status(200).send('Your message has been sent successfully.');
+            return res.status(200).send('Your message has been sent successfully.');
         }
     });
 });
