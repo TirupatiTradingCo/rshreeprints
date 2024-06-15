@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
             formObject[key] = value;
         });
 
-        fetch('https://rshreeprints-dda0bdd19954.herokuapp.com/contact', {
+        fetch('https://rshreeprints-dda0bdd19954.herokuapp.com/contact', {  // Update with your Heroku server URL
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -18,7 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('Thank you for contacting us!');
                 this.reset();
             } else {
-                alert('There was an error submitting the form.');
+                response.text().then(text => {
+                    alert(`There was an error submitting the form: ${text}`);
+                });
             }
         }).catch(error => {
             alert('There was an error submitting the form.');
