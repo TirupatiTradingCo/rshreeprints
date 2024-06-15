@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
             formObject[key] = value;
         });
 
-        fetch('/contact', {
+        fetch('https://rshreeprints-dda0bdd19954.herokuapp.com//contact', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
