@@ -2,7 +2,7 @@ const express = require('express');
 const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
 const path = require('path');
-const cors = require('cors'); // Add this line
+const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
@@ -10,11 +10,11 @@ const PORT = process.env.PORT || 3000;
 
 // Configure CORS options
 const corsOptions = {
-    origin: 'http://www.rshreeprints.com', // Replace with your custom domain
+    origin: 'http://www.rshreeprints.com',
     optionsSuccessStatus: 200
 };
 
-app.use(cors(corsOptions)); // Add this line
+app.use(cors(corsOptions));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
