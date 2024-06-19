@@ -36,8 +36,8 @@ app.post('/contact', (req, res) => {
     });
 
     const mailOptions = {
-        from: 'tirupatitradingcompany96@gmail.com',
-        to: 'tirupatitrading.ttc@gmail.com',
+        from: 'tirupatitrading.ttc@gmail.com',
+        to: 'tirupatitradingcompany96@gmail.com',
         subject: `Contact form submission from ${name}`,
         text: `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\nMessage: ${message}`
     };
