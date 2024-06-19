@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
             formObject[key] = value;
         });
 
-        fetch('https://www.rshreeprints.com/contact', {  // Update with your Heroku server URL
+        fetch('https://rshreeprints.vercel.app/contact', { 
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
